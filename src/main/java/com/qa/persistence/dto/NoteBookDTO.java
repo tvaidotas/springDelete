@@ -7,12 +7,12 @@ public class NoteBookDTO {
 
     private Long id;
     private String name;
-    private List<Note> notes;
+    private List<NoteDTO> notes;
 
     public NoteBookDTO() {
     }
 
-    public NoteBookDTO(String name, List<Note> notes) {
+    public NoteBookDTO(String name, List<NoteDTO> notes) {
         super();
         this.name = name;
         this.notes = notes;
@@ -34,11 +34,11 @@ public class NoteBookDTO {
         this.name = name;
     }
 
-    public List<Note> getNotes() {
+    public List<NoteDTO> getNotes() {
         return notes;
     }
 
-    public void setNotes(List<Note> notes) {
+    public void setNotes(List<NoteDTO> notes) {
         this.notes = notes;
     }
 
