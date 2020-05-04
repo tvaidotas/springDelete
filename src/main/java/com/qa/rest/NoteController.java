@@ -1,8 +1,11 @@
 package com.qa.rest;
 
 import com.qa.persistence.domain.Note;
+import com.qa.persistence.dto.NoteDTO;
 import com.qa.service.NotesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
@@ -19,28 +22,30 @@ public class NoteController {
     }
 
     @GetMapping("/getAll")
-    public List<Note> getAllNotes(){
-        return this.service.readNotes();
+    public ResponseEntity<List<NoteDTO>> getAllNotes(){
+        return ResponseEntity.ok(this.service.readNotes());
     }
 
     @PostMapping("/createNote")
-    public Note createNote(@RequestBody Note note){
-        return this.service.createNote(note);
+    public ResponseEntity<NoteDTO> createNote(@RequestBody Note note){
+        return new ResponseEntity<NoteDTO>(this.service.createNote(note), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/deleteNote/{id}")
-    public boolean deleteNote(@PathVariable Long id){
-        return this.service.deleteDuck(id);
+    public ResponseEntity<?> deleteNote(@PathVariable Long id){
+        return this.service.deleteDuck(id)
+                ? ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
+                : ResponseEntity.noContent().build();
     }
 
     @GetMapping("/getNote/{id}")
-    public Note getNote(@PathVariable Long id){
-        return this.service.findNoteById(id);
+    public ResponseEntity<NoteDTO> getNote(@PathVariable Long id){
+        return ResponseEntity.ok(this.service.findNoteById(id));
     }
 
     @PutMapping("/updateNote")
-    public Note updateNote(@PathParam("id") Long id, @RequestBody Note note){
-        return this.service.updateNote(note, id);
+    public ResponseEntity<NoteDTO> updateNote(@PathParam("id") Long id, @RequestBody Note note){
+        return new ResponseEntity<NoteDTO>(this.service.updateNote(note, id), HttpStatus.ACCEPTED);
     }
 
 }

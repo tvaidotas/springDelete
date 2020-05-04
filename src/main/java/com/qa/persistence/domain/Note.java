@@ -7,12 +7,24 @@ import java.util.Objects;
 public class Note {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
 
     @Column(name = "note_name", unique = true)
     private String title;
     private String description;
+
+    @ManyToOne(targetEntity = NoteBook.class)
+    private NoteBook noteBook;
+
+    public Note(String title, String description) {
+        super();
+        this.title = title;
+        this.description = description;
+    }
+
+    public Note(){
+    }
 
     public Long getId() {
         return id;
@@ -51,6 +63,14 @@ public class Note {
     @Override
     public int hashCode() {
         return Objects.hash(id, title, description);
+    }
+
+    public NoteBook getNoteBook() {
+        return noteBook;
+    }
+
+    public void setNoteBook(NoteBook noteBook) {
+        this.noteBook = noteBook;
     }
 
 }
