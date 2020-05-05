@@ -1,6 +1,5 @@
 package com.qa.persistence.dto;
 
-import com.qa.persistence.domain.Note;
 import java.util.List;
 
 public class NoteBookDTO {
