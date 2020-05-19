@@ -38,7 +38,7 @@ public class SeleniumTest {
 
     @Test
     public void exampleSelenium() throws InterruptedException {
-        driver.get("http://localhost:8080/homepage.html");
+        driver.get("http://localhost:8181/homepage.html");
         Thread.sleep(1000);
         WebElement paragraph = driver.findElement(By.id("hello_world_message"));
         assertTrue(paragraph.isDisplayed());
