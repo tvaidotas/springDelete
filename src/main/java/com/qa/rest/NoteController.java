@@ -33,7 +33,7 @@ public class NoteController {
 
     @DeleteMapping("/deleteNote/{id}")
     public ResponseEntity<?> deleteNote(@PathVariable Long id){
-        return this.service.deleteDuck(id)
+        return this.service.deleteNote(id)
                 ? ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
                 : ResponseEntity.noContent().build();
     }

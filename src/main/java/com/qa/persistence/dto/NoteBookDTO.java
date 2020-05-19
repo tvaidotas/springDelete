@@ -1,6 +1,7 @@
 package com.qa.persistence.dto;
 
 import java.util.List;
+import java.util.Objects;
 
 public class NoteBookDTO {
 
@@ -41,4 +42,18 @@ public class NoteBookDTO {
         this.notes = notes;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        NoteBookDTO that = (NoteBookDTO) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(notes, that.notes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, notes);
+    }
 }

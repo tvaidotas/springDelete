@@ -32,7 +32,7 @@ public class NotesService {
         return this.mapToDTO(savedNote);
     }
 
-    public boolean deleteDuck(Long id){
+    public boolean deleteNote(Long id){
         if (!this.repository.existsById(id)){
             throw new NoteNotFoundException();
         }

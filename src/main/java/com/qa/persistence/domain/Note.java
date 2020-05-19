@@ -50,21 +50,6 @@ public class Note {
         this.description = description;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Note note = (Note) o;
-        return id.equals(note.id) &&
-                title.equals(note.title) &&
-                description.equals(note.description);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, title, description);
-    }
-
     public NoteBook getNoteBook() {
         return noteBook;
     }
@@ -73,4 +58,36 @@ public class Note {
         this.noteBook = noteBook;
     }
 
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Note other = (Note) obj;
+        if (description == null) {
+            if (other.description != null)
+                return false;
+        } else if (!description.equals(other.description))
+            return false;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        if (title == null) {
+            if (other.title != null)
+                return false;
+        } else if (!title.equals(other.title))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }
